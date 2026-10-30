@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="PDF朗読">
+  <meta name="theme-color" content="#2f6fde">
+  <title>PDF朗読</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>PDF朗読</h1>
+    <label class="file-btn">
+      PDFを開く
+      <input id="fileInput" type="file" accept="application/pdf,.pdf" hidden>
+    </label>
+  </header>
+
+  <main>
+    <p id="status" class="status">「PDFを開く」からファイルを選んでください。</p>
+    <div id="fileName" class="file-name"></div>
+
+    <nav class="page-nav" id="pageNav" hidden>
+      <button id="prevPage" type="button" aria-label="前のページ">‹</button>
+      <span><input id="pageInput" type="number" min="1" value="1" inputmode="numeric"> / <span id="pageCount">0</span> ページ</span>
+      <button id="nextPage" type="button" aria-label="次のページ">›</button>
+    </nav>
+
+    <article id="text" class="text" aria-live="polite"></article>
+  </main>
+
+  <footer id="controls" hidden>
+    <div class="buttons">
+      <button id="prevSentence" type="button" aria-label="前の文">⏮</button>
+      <button id="playPause" type="button" class="primary" aria-label="再生">▶︎</button>
+      <button id="stop" type="button" aria-label="停止">⏹</button>
+      <button id="nextSentence" type="button" aria-label="次の文">⏭</button>
+    </div>
+    <div class="settings">
+      <label>速度 <span id="rateLabel">1.0</span>x
+        <input id="rate" type="range" min="0.5" max="2" step="0.1" value="1">
+      </label>
+      <label>声
+        <select id="voice"></select>
+      </label>
+    </div>
+  </footer>
+
+  <script src="vendor/pdfjs/pdf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
